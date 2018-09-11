@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import service.FileUploadService;
 import service.FileUploadServiceImpl;
 import service.UploadService;
 import service.UploadServiceImpl;
+import vo.UploadData;
 
 
 @WebServlet("*.file")
@@ -75,10 +77,18 @@ public class FileController extends HttpServlet {
 		case "insert.file": 
 			boolean result = uploadService.insertUpload(request);
 			if(result == true) {
-				response.sendRedirect("/");
+				response.sendRedirect("./");
 			}else {
 				response.sendRedirect("input.file");
 			}
+			break;
+		case "list.file":
+			List<UploadData> list = uploadService.uploadList(request);
+			request.setAttribute("list", list);
+			rd = request.getRequestDispatcher("views/list.jsp");
+			rd.forward(request, response);
+			break;
+		 
 		}
 	}
 	

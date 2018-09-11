@@ -1,0 +1,104 @@
+<html>
+ <head>
+  <script language="javascript" src="shortcut.js"></script>
+  <script language="javascript">
+   
+   function shortcuts(){
+    //smiple type
+    shortcut.add( "Shift+F1",function() {alert("Shift+F1");});
+    /*
+     shortcut options
+     1. type - String 
+     The event type - can be 'keydown','keyup','keypress'. Default: 'keydown' 
+     2. disable_in_input - Boolean 
+     If this is set to true, keyboard capture will be disabled in input and textarea fields. If these elements have focus, the keyboard shortcut will not work. This is very useful for single key shortcuts. Default: false 
+     3. target - DOM Node 
+     The element that should be watched for the keyboard event. Default : document 
+     4. propagate - Boolean 
+     Allow the event to propagate? Default : false 
+     5. keycode - Integer 
+     Watch for this keycode. For eg., the keycode '65' is 'a'. 
+    */
+    //propagate ???
+    shortcut.add( "Shift+Right", 
+          function() {alert("Shift+Right");},
+          { 'type':'keydown', 'propagate':true, 'target':document }
+    );
+    //call function : runs
+    //disable_in_input
+    shortcut.add( "Ctrl+Shift+1", 
+          function() {runs("Ctrl+Shift+1");},
+          {'type':'keydown','propagate':false,'disable_in_input':true,'target':document}
+    );
+    
+    /*
+     single key test
+    
+    //not execute
+    shortcut.add('N',
+          function() {runs("N");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    
+    //execute
+    shortcut.add('Ctrl',
+          function() {runs("Ctrl");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    
+    //execute
+    shortcut.add('Shift',
+          function() {runs("Shift");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    
+    //execute
+    shortcut.add('Alt',
+          function() {runs("Alt");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    
+    //execute
+    shortcut.add('1',
+          function() {runs("1");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    
+    //execute
+    shortcut.add('Right',
+          function() {runs("Right");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    
+    //execute
+    shortcut.add('Tab',
+          function() {runs("Tab");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    
+    //execute
+    shortcut.add('F1',
+          function() {runs("F1");},
+          {'disable_in_input':false,'type':'keydown'}
+    );
+    */
+    
+    shortcut.add("Ctrl+Shift+2",
+          function() {alert("Ctrl+Shift+2");}
+    );
+    
+    //Remove the shortcut
+    shortcut.remove("Ctrl+Shift+2");
+   }
+   
+   function runs(str){
+    alert(str);
+   }
+   
+   window.onload = shortcuts;
+  </script>
+ </head>
+ <body>
+  <textarea>ddd</textarea>
+  </body>
+</html>

@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -88,5 +90,29 @@ public class UploadDaoImpl implements UploadDao {
 			close();
 		}
 		return result;
+	}
+	@Override
+	public List<UploadData>  uploadList() {
+		List<UploadData> list = new ArrayList<>();
+		try {
+			connect();
+			pstmt=con.prepareStatement("select * from uploaddata");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				UploadData uploadData = new UploadData();
+				uploadData.setCode(rs.getInt("code"));
+				uploadData.setFilename(rs.getString("filename"));
+				uploadData.setDescription(rs.getString("description"));
+				uploadData.setFilesize(rs.getInt("filesize"));
+				list.add(uploadData);
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return list;
 	}
 }

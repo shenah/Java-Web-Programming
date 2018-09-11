@@ -1,7 +1,9 @@
 package service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -62,5 +64,11 @@ public class UploadServiceImpl implements UploadService {
 		}
 		return result;
 		
+	}	
+
+	@Override
+	public List<UploadData> uploadList(HttpServletRequest request) {
+		
+		return uploadDao.uploadList();
 	}
 }
